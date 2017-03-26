@@ -23,5 +23,6 @@ public class HeaderHoler extends MainHolder {
         }
         viewStub.setLayoutResource(R.layout.head_view);
         View view = viewStub.inflate();
+
     }
 }
