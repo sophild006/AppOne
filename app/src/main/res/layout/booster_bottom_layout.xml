@@ -3,7 +3,7 @@
     android:id="@+id/layout_bottom"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:background="@drawable/ic_booster_bottom_bg"
+    android:background="@mipmap/ic_booster_bottom_bg"
     android:orientation="horizontal">
 
     <LinearLayout

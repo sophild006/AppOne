@@ -173,11 +173,6 @@ public class BoosterPullLayout extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        printDebug("onDraw ");
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_booster_background);
-//        //draw corner
-//        canvas.drawBitmap(bitmap,0,0,mPaint);
-//        canvas.drawBitmap(bitmap,canvas.getWidth()-bitmap.getWidth(),0,mPaint);
     }
 
     @Override
@@ -220,6 +215,12 @@ public class BoosterPullLayout extends FrameLayout {
         }
     }
 
+    /**
+     * 这个方法是拦截时间，如果返回true，则拦截到自己的onTouchEvent时间处理
+     * 如果返回false，则由子View来处理事件
+     * @param ev
+     * @return
+     */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         final int action = ev.getAction() & MotionEventCompat.ACTION_MASK;
@@ -260,7 +261,6 @@ public class BoosterPullLayout extends FrameLayout {
                         printDebug("onInterceptTouchEvent will be Intercept 2");
                     }
                 }
-
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
@@ -278,7 +278,6 @@ public class BoosterPullLayout extends FrameLayout {
             mVelocityTracker = VelocityTracker.obtain();
         }
         mVelocityTracker.addMovement(event);
-
         final int action = event.getAction();
         final float x = event.getX();
         final float y = event.getY();
