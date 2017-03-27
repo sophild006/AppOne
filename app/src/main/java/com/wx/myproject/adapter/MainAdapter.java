@@ -71,7 +71,7 @@ public class MainAdapter extends BaseRecycleViewAdapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewholder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewholder, final int position) {
         if (getItemViewType(position) == TYPE_HEAD) {
             Log.d("wwq","TYPE_HEAD: "+TYPE_HEAD);
         } else {
@@ -86,6 +86,12 @@ public class MainAdapter extends BaseRecycleViewAdapter {
             Glide.with(context).load(userImg).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.userImg);
 
 
+            holder.deleteTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    presenter.deleteItem(position);
+                }
+            });
         }
 
     }

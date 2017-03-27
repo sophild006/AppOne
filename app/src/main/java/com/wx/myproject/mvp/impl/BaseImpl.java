@@ -16,9 +16,11 @@ public interface BaseImpl {
         void hideProgress();
 
         void updateData(List<MainBean> object);
+        void deleteItem(int position);
     }
 
     interface PresenterImpl {
         void loadData(int type);
+        void deleteItem(int position);
     }
 }

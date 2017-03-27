@@ -20,6 +20,7 @@ import com.wx.myproject.view.DivItemDecoration;
 import com.wx.myproject.view.ExpandTextView;
 import com.wx.myproject.view.SnsPopupWindow;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements BaseImpl.View {
@@ -30,6 +31,8 @@ public class MainActivity extends BaseActivity implements BaseImpl.View {
     private SuperRecyclerView superRecyvleView;
     private MainAdapter mAdapter;
     private SwipeRefreshLayout.OnRefreshListener refreshListener;
+    private List<MainBean> mList = new ArrayList<>();
+
     @Override
     protected int generateId() {
         return R.layout.activity_main;
@@ -48,7 +51,7 @@ public class MainActivity extends BaseActivity implements BaseImpl.View {
         superRecyvleView.setAdapter(mAdapter);
         presenter.loadData(1);
 
-        superRecyvleView.getSwipeToRefresh().post(new Runnable(){
+        superRecyvleView.getSwipeToRefresh().post(new Runnable() {
             @Override
             public void run() {
                 superRecyvleView.setRefreshing(true);//执行下拉刷新的动画
@@ -84,10 +87,19 @@ public class MainActivity extends BaseActivity implements BaseImpl.View {
     @Override
     public void updateData(List<MainBean> object) {
         if (object != null) {
+            mList = object;
             superRecyvleView.setRefreshing(false);
-            Log.d("wwq","data.size(): "+object.size());
-            mAdapter.setDatas(object);
+            Log.d("wwq", "data.size(): " + object.size());
+            mAdapter.setDatas(mList);
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void deleteItem(int position) {
+        Toast.makeText(MainActivity.this, "position: " + position, Toast.LENGTH_SHORT).show();
+        mList.remove(position-1);
+        mAdapter.setDatas(mList);
+        mAdapter.notifyDataSetChanged();
     }
 }

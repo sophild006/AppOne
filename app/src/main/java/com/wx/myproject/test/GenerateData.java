@@ -63,6 +63,13 @@ public class GenerateData {
         User user5 = new User("5", "田七", HEADIMG[5]);
         User user6 = new User("6", "Naoki", HEADIMG[6]);
         User user7 = new User("7", "这个名字是不是很长，哈哈！因为我是用来测试换行的", HEADIMG[7]);
+        User user8 = new User("1", "张三", HEADIMG[1]);
+        User user9 = new User("2", "李四", HEADIMG[2]);
+        User user10 = new User("3", "隔壁老王", HEADIMG[3]);
+        User user11= new User("4", "赵六", HEADIMG[4]);
+        User user12 = new User("5", "田七", HEADIMG[5]);
+        User user13 = new User("6", "Naoki", HEADIMG[6]);
+        User user14 = new User("7", "这个名字是不是很长，哈哈！因为我是用来测试换行的", HEADIMG[7]);
 
         users.add(curUser);
         users.add(user1);
@@ -72,6 +79,13 @@ public class GenerateData {
         users.add(user5);
         users.add(user6);
         users.add(user7);
+        users.add(user8);
+        users.add(user9);
+        users.add(user10);
+        users.add(user11);
+        users.add(user12);
+        users.add(user13);
+        users.add(user14);
 
         PhotoInfo p1 = new PhotoInfo();
         p1.url = "http://f.hiphotos.baidu.com/image/pic/item/faf2b2119313b07e97f760d908d7912396dd8c9c.jpg";
@@ -139,7 +153,7 @@ public class GenerateData {
         List<MainBean> beans = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             MainBean bean = new MainBean();
-            bean.setUser(getUser());
+            bean.setUser(users.get(i));
             bean.setType("1");// 链接
             bean.setLinkImg("http://pics.sc.chinaz.com/Files/pic/icons128/2264/%E8%85%BE%E8%AE%AFQQ%E5%9B%BE%E6%A0%87%E4%B8%8B%E8%BD%BD1.png");
             bean.setLinkTitle("百度一下，你就知道");

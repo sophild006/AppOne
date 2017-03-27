@@ -27,6 +27,11 @@ public class Presenter implements BaseImpl.PresenterImpl, BaseListener {
     }
 
     @Override
+    public void deleteItem(int position) {
+        mView.deleteItem(position);
+    }
+
+    @Override
     public void onLoadSuccess(List<MainBean> object) {
         if (mView != null) {
             mView.hideProgress();
