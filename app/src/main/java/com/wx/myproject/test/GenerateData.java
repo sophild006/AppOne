@@ -154,10 +154,18 @@ public class GenerateData {
         for (int i = 0; i < 15; i++) {
             MainBean bean = new MainBean();
             bean.setUser(users.get(i));
-            bean.setType("1");// 链接
+            bean.setId(String.valueOf(i));
             bean.setLinkImg("http://pics.sc.chinaz.com/Files/pic/icons128/2264/%E8%85%BE%E8%AE%AFQQ%E5%9B%BE%E6%A0%87%E4%B8%8B%E8%BD%BD1.png");
             bean.setLinkTitle("百度一下，你就知道");
-
+            int type = getRandomNum(10) % 2;
+            if (type == 0) {
+                bean.setType("1");// 链接
+                bean.setLinkImg("http://pics.sc.chinaz.com/Files/pic/icons128/2264/%E8%85%BE%E8%AE%AFQQ%E5%9B%BE%E6%A0%87%E4%B8%8B%E8%BD%BD1.png");
+                bean.setLinkTitle("百度一下，你就知道");
+            } else if(type == 1){
+                bean.setType("2");// 图片
+                bean.setPhotos(createPhotos());
+            }
             beans.add(bean);
         }
         return beans;

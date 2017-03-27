@@ -11,8 +11,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.wx.myproject.R;
 import com.wx.myproject.bean.main.MainBean;
+import com.wx.myproject.bean.main.PhotoInfo;
 import com.wx.myproject.bean.main.User;
 import com.wx.myproject.mvp.presenter.Presenter;
+
+import java.util.List;
 
 /**
  * Created by wwq on 2017/3/26.
@@ -40,9 +43,9 @@ public class MainAdapter extends BaseRecycleViewAdapter {
             return TYPE_HEAD;
         }
         int viewtype = 0;
-        Log.d("wwq","datas: "+datas.size());
-        MainBean bean = (MainBean) datas.get(position-1);
-        Log.d("wwq","bean: "+bean.toString());
+        Log.d("wwq", "datas: " + datas.size());
+        MainBean bean = (MainBean) datas.get(position - 1);
+        Log.d("wwq", "bean: " + bean.toString());
         if (MainBean.TYPE_IMG.equalsIgnoreCase(bean.getType())) {
             viewtype = TYPE_IMG;
         } else if (MainBean.TYPE_URL.equalsIgnoreCase(bean.getType())) {
@@ -54,12 +57,11 @@ public class MainAdapter extends BaseRecycleViewAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder = null;
-        Log.d("wwq","viewType: "+viewType);
+        Log.d("wwq", "viewType: " + viewType);
         if (viewType == TYPE_HEAD) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.head_view, parent, false);
             holder = new HeaderViewHolder(view);
-        }
-        else {
+        } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_item, parent, false);
             if (viewType == TYPE_IMG) {
                 holder = new ImageHolder(view, viewType);
@@ -73,34 +75,55 @@ public class MainAdapter extends BaseRecycleViewAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewholder, final int position) {
         if (getItemViewType(position) == TYPE_HEAD) {
-            Log.d("wwq","TYPE_HEAD: "+TYPE_HEAD);
+            Log.d("wwq", "TYPE_HEAD: " + TYPE_HEAD);
         } else {
             int resetPosition = position - 1;//因为多了一个无用的Header的位置；
             MainHolder holder = (MainHolder) viewholder;
             MainBean bean = (MainBean) datas.get(resetPosition);
             User uerName = bean.getUser();
+            final String id=bean.getId();
             String userName = uerName.getName();
-            Log.d("wwq","userName: "+userName);
+            Log.d("wwq", "userName: " + userName);
             String userImg = uerName.getHeadUrl();
             holder.userName.setText(userName);
             Glide.with(context).load(userImg).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.userImg);
-
-
             holder.deleteTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    presenter.deleteItem(position);
+                    presenter.deleteItem(id);
                 }
             });
+
+            switch (holder.viewType) {
+                case TYPE_URL:
+                    break;
+                case TYPE_IMG:
+                    if (holder instanceof ImageHolder) {
+                        List<PhotoInfo> photos = bean.getPhotos();
+                        if (photos != null && photos.size() > 0) {
+                            ((ImageHolder) holder).mMultImageView.setList(photos);
+                            ((ImageHolder) holder).mMultImageView.setVisibility(View.VISIBLE);
+                        } else {
+                            ((ImageHolder) holder).mMultImageView.setVisibility(View.GONE);
+                        }
+
+
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
-    public class HeaderViewHolder extends RecyclerView.ViewHolder{
+
+    public class HeaderViewHolder extends RecyclerView.ViewHolder {
 
         public HeaderViewHolder(View itemView) {
             super(itemView);
         }
     }
+
     @Override
     public int getItemCount() {
         return datas.size() + 1;//有head需要加1

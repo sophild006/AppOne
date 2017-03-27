@@ -3,6 +3,7 @@ package com.wx.myproject;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.malinskiy.superrecyclerview.OnMoreListener;
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
 import com.wx.myproject.adapter.MainAdapter;
 import com.wx.myproject.base.BaseActivity;
@@ -70,6 +73,33 @@ public class MainActivity extends BaseActivity implements BaseImpl.View {
             }
         };
         superRecyvleView.setRefreshListener(refreshListener);
+
+
+        superRecyvleView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    Glide.with(MainActivity.this).resumeRequests();
+                } else {
+                    Glide.with(MainActivity.this).pauseRequests();
+                }
+
+            }
+        });
+        superRecyvleView.setupMoreListener(new OnMoreListener() {
+            @Override
+            public void onMoreAsked(int overallItemsCount, int itemsBeforeMore, int maxLastVisiblePosition) {
+                presenter.loadData(1);
+
+            }
+        }, 1);
+
 //        mExpandView = (ExpandTextView) findViewById(R.id.expandTv);
 //        mExpandView.setText("清明节又叫踏青节，在仲春与暮春之交，也就是冬至后的第108天。是中国传统节日，也是最重要的祭祀节日之一，是祭祖和扫墓的日子。中华民族传统的清明节大约始于周代，距今已有二千五百多年的历史。清明最早只是一种节气的名称，其变成纪念");
     }
@@ -96,10 +126,23 @@ public class MainActivity extends BaseActivity implements BaseImpl.View {
     }
 
     @Override
-    public void deleteItem(int position) {
+    public void deleteItem(String position) {
         Toast.makeText(MainActivity.this, "position: " + position, Toast.LENGTH_SHORT).show();
-        mList.remove(position-1);
-        mAdapter.setDatas(mList);
-        mAdapter.notifyDataSetChanged();
+        List<MainBean> datas = mAdapter.getDatas();
+        for (int i=0;i<datas.size();i++){
+            if(position.equalsIgnoreCase(datas.get(i).getId())){
+                datas.remove(i);
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (presenter != null) {
+            presenter.recycle();
+        }
+
     }
 }

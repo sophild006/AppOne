@@ -23,11 +23,11 @@ public class Presenter implements BaseImpl.PresenterImpl, BaseListener {
 
     @Override
     public void loadData(int type) {
-        model.loadData(type,this);
+        model.loadData(type, this);
     }
 
     @Override
-    public void deleteItem(int position) {
+    public void deleteItem(String position) {
         mView.deleteItem(position);
     }
 
@@ -43,4 +43,12 @@ public class Presenter implements BaseImpl.PresenterImpl, BaseListener {
     public void onLoadFailed(Object object) {
 
     }
+
+    /**
+     * 清除对外部对象的引用，防止内存泄露。
+     */
+    public void recycle() {
+        this.mView = null;
+    }
+
 }
