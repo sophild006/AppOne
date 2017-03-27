@@ -106,6 +106,7 @@ public class BoosterPullLayout extends FrameLayout {
 //        mContext = context;
         mToastHeight = getResources().getDimension(R.dimen.booster_toast_height);
         mShowedToast = mShowCount < 3;
+        scrollTo(0,mScrollerDiff);
     }
 
     @Override
@@ -478,7 +479,6 @@ public class BoosterPullLayout extends FrameLayout {
             final float pageDelta = (float) Math.abs(dx) / (mScrollerDiff * 1.0f);
             duration = (int) ((pageDelta + 1) * 100);
         }
-
         duration = Math.min(duration, MAX_SETTLE_DURATION);
         mScroller.startScroll(sx, sy, dx, dy, duration);
         ViewCompat.postInvalidateOnAnimation(this);
