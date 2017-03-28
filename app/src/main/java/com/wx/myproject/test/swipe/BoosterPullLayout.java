@@ -280,7 +280,7 @@ public class BoosterPullLayout extends FrameLayout {
 //                setOffset(deltaY);
                 int deltaY = (int) (mLastMotionY - y);
                 scrollBy(0, deltaY);
-                animLayout(getScrollY());
+//                animLayout(getScrollY());
                 ViewCompat.postInvalidateOnAnimation(this);
                 mLastMotionX = x;
                 mLastMotionY = y;
