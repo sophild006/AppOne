@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_path"
+        android:icon="@drawable/path_drawable"
+        android:orderInCategory="100"
+        android:title="Down Path"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction"></item>
+    <item
+        android:id="@+id/action_detele"
+        android:icon="@drawable/ic_gesture_black_24dp"
+        android:orderInCategory="100"
+        android:title="Down Path"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction"></item>
+</menu>

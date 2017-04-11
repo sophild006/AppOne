@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_path_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/root_color">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_path_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="16dp"
+            android:lineSpacingMultiplier="1.3"
+            android:text="storage/emulated/0/Pictures/Mysplash"
+            android:textIsSelectable="true" />
+
+        <Button
+            android:id="@+id/dialog_path_enterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/dialog_path_text"
+            android:background="@null"
+            android:text="确认"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/dialog_path_copyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dialog_path_text"
+            android:layout_toLeftOf="@id/dialog_path_enterBtn"
+            android:background="@null"
+            android:text="复制"
+            android:textColor="?attr/subtitle_color"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -2,23 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cool.paper">
+
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".MyApp"
-        android:supportsRtl="true"
         android:largeHeap="true"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:theme="@style/MysplashTheme_dark"
+        android:supportsRtl="true"
+        android:theme="@style/MysplashTheme_light"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource">
+        <activity
+            android:name=".TestActivity"
             android:clearTaskOnLaunch="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/MysplashTheme_light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

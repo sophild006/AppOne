@@ -23,7 +23,14 @@
         <item name="android:windowBackground">@color/colorPrimary_light</item>
         <item name="android:popupMenuStyle">@style/material_popup_menu</item>
     </style>
-
+    <style name="MysplashPopupMenuTheme" parent="@style/ThemeOverlay.AppCompat">
+        <item name="android:colorBackground">?attr/root_color</item>
+        <item name="android:textColor">?attr/content_color</item>
+    </style>
+    <style name="MysplashToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">?attr/content_color</item>
+        <item name="android:textColorSecondary">?attr/content_color</item>
+    </style>
     <style name="MysplashTheme_dark" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary_dark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_dark</item>
