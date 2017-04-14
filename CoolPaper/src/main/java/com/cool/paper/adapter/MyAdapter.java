@@ -22,7 +22,7 @@ import java.util.List;
  * Created by Administrator on 2017/4/11.
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> implements ItemTouchHelperAdapter{
     private Context context;
     private List<PhotoBean> mList;
 
@@ -86,6 +86,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
         return mList.size();
     }
 
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        PhotoBean prev = mList.remove(fromPosition);
+        mList.add(toPosition > fromPosition ? toPosition - 1 : toPosition, prev);
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        mList.remove(position);
+        notifyItemRemoved(position);
+    }
+
 
     public class MyHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
@@ -100,10 +113,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
             ivClose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    removeAnimation(itemView, getAdapterPosition());
+//                    removeAnimation(itemView, getAdapterPosition());
+                    mList.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
                 }
             });
         }
-
     }
 }

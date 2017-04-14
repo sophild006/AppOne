@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.wx.myproject.test.login.SlideScollView
+        android:layout_width="match_parent"
+        android:id="@+id/slideScrollView"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.wx.myproject.test.login.SignContainer
+            android:id="@+id/signContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.wx.myproject.test.login.SignContainer>
+    </com.wx.myproject.test.login.SlideScollView>
+</LinearLayout>
