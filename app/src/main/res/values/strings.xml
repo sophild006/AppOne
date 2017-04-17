@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MyProject</string>
+    <string-array name="fragtitles">
+        <item>@string/live</item>
+        <item>@string/command</item>
+        <item>@string/focus</item>
+        <item>@string/discover</item>
+    </string-array>
+
+    <string name="live">直播</string>
+    <string name="command">推荐</string>
+    <string name="focus">关注</string>
+    <string name="discover">发现</string>
 </resources>

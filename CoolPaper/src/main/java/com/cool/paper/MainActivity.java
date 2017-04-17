@@ -20,10 +20,16 @@ public class MainActivity extends BaseActivity implements MyImageView.setonClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.image_anim);
-        widgetContainer = (LinearLayout) findViewById(R.id.widgetContainer);
-        myImageView = (MyImageView) findViewById(R.id.img);
-        myImageView.setListener(this);
+        setContentView(R.layout.activity_main);
+        Log.d("wwq","onCreate...");
+//        widgetContainer = (LinearLayout) findViewById(R.id.widgetContainer);
+//        myImageView = (MyImageView) findViewById(R.id.img);
+//        myImageView.setListener(this);
+//        if (ThemeManager.getInstance(this).isLightTheme()) {
+//            setTheme(R.style.MysplashTheme_light);
+//        } else {
+//            setTheme(R.style.MysplashTheme_dark);
+//        }
     }
 
     public void SetPaper(View view) {
@@ -47,8 +53,8 @@ public class MainActivity extends BaseActivity implements MyImageView.setonClick
 //
 //        }
         changeTheme(this);
-        reboot();
-        showWidget();
+//        reboot();
+//        showWidget();
     }
 
     private void showWidget() {
@@ -88,6 +94,7 @@ public class MainActivity extends BaseActivity implements MyImageView.setonClick
                 .setLightTheme(
                         c,
                         !ThemeManager.getInstance(c).isLightTheme());
+
     }
 
     private Bitmap decodeResource(Resources resources, int id) {
