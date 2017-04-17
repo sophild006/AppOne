@@ -8,8 +8,7 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -17,9 +16,9 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
-                app:layout_scrollFlags="scroll|enterAlways"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -54,10 +53,12 @@
                 android:background="@color/colorPrimary"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                app:tl_indicator_color="#f43131"
                 app:tl_indicator_corner_radius="1dp"
                 app:tl_indicator_height="2dp"
-                app:tl_indicator_width="40dp"
-                app:tl_tab_space_equal="true" />
+                app:tl_indicator_width="30dp"
+                app:tl_tab_space_equal="false"
+                app:tl_textSelectColor="#80ef11" />
 
         </android.support.design.widget.AppBarLayout>
 

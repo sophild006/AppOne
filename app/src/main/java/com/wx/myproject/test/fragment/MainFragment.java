@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.wx.myproject.R;
+import com.wx.myproject.util.PreferenceHelper;
 
 /**
  * Created by Administrator on 2017/4/17.
@@ -43,7 +45,6 @@ public class MainFragment extends BaseFragment implements Toolbar.OnMenuItemClic
         toolbar.inflateMenu(R.menu.toolbar);
         toolbar.setOnMenuItemClickListener(this);
         viewPager = (NoScrollViewPager) view.findViewById(R.id.viewPager);
-        viewPager.setOffscreenPageLimit(5);
         mSlidingTab = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         viewPager.setAdapter(new HomeFragmentAdapter(getChildFragmentManager(), getActivity()));
         mSlidingTab.setViewPager(viewPager);
@@ -66,6 +67,7 @@ public class MainFragment extends BaseFragment implements Toolbar.OnMenuItemClic
         switch (id) {
             case R.id.game:
                 //游戏中心
+                switchNightMode();
                 break;
 
             case R.id.search:
@@ -76,4 +78,32 @@ public class MainFragment extends BaseFragment implements Toolbar.OnMenuItemClic
         }
         return true;
     }
+
+    private void switchNightMode() {
+
+        boolean isNight = PreferenceHelper.getBoolean("SWITCH_MODE_KEY");
+        if (isNight) {
+            // 日间模式
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            PreferenceHelper.setBoolean("SWITCH_MODE_KEY", false);
+        } else {
+            // 夜间模式
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            PreferenceHelper.setBoolean("SWITCH_MODE_KEY", true);
+        }
+
+        reboot();
+    }
+
+    private void reboot() {
+        Intent intent = new Intent(getActivity(), FragMainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        int enter_anim = android.R.anim.fade_in;
+        int exit_anim = android.R.anim.fade_out;
+        startActivity(intent);
+        Log.d("wwq", "reboot....");
+        getActivity().overridePendingTransition(enter_anim, exit_anim);
+    }
+
+
 }

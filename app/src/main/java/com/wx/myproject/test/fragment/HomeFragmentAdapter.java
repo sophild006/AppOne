@@ -33,7 +33,7 @@ public class HomeFragmentAdapter extends FragmentPagerAdapter {
                     fragment = LiveFragment.newInstance();
                     break;
                 case 1:
-                    fragment =  CommandFragment.newInstance();
+                    fragment = CommandFragment.newInstance();
                     break;
                 case 2:
                     fragment = FocusFragment.newInstance();
@@ -47,6 +47,15 @@ public class HomeFragmentAdapter extends FragmentPagerAdapter {
                     break;
                 case 5:
                     fragment = DisCoveryFragment.newInstance();
+                    break;
+                case 6:
+                    fragment = LiveFragment.newInstance();
+                    break;
+                case 7:
+                    fragment = LiveFragment.newInstance();
+                    break;
+                case 8:
+                    fragment = LiveFragment.newInstance();
                     break;
             }
         }

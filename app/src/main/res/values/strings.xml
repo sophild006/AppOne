@@ -5,6 +5,11 @@
         <item>@string/command</item>
         <item>@string/focus</item>
         <item>@string/discover</item>
+        <item>@string/live</item>
+        <item>@string/live</item>
+        <item>@string/live</item>
+        <item>@string/live</item>
+        <item>@string/live</item>
     </string-array>
 
     <string name="live">直播</string>
