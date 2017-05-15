@@ -26,6 +26,7 @@ public class ImageHolder extends MainHolder {
         }
         viewStub.setLayoutResource(R.layout.layout_img_body);
         View inflate = viewStub.inflate();
-        mMultImageView = (MultiImageView) inflate.findViewById(R.id.multImgView);
+
+
     }
 }
